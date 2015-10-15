@@ -7,7 +7,7 @@
       <div class="input-group">
         <div class="input-group-addon">$</div>
         <input id="wallet-input" type="text" class="form-control" ng-model="newTransaction"
-               ng-currency="true" min="0" select-on-focus>
+               ng-currency="true" min="0" currency-symbol="" select-on-focus>
       </div>
     </div>
     <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction" ng-click="addMoney(newTransaction)">Put In</button>
