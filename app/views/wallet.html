@@ -22,10 +22,10 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Time</th>
-        <th>In</th>
-        <th>Out</th>
+        <th class="text-center">#</th>
+        <th class="text-left">Time</th>
+        <th class="text-right">In</th>
+        <th class="text-right">Out</th>
         <th class="text-right">Running Total</th>
       </tr>
     </thead>
@@ -38,16 +38,16 @@
 
     <tbody>
       <tr ng-repeat="transaction in transactions">
-        <td ng-bind="::transaction.id"></td>
-        <td ng-bind="::transaction.date | date:'yyyy-MM-dd HH:mm:ss'"></td>
+        <td class="text-center" ng-bind="::transaction.id"></td>
+        <td class="text-left" ng-bind="::transaction.date | date:'yyyy-MM-dd HH:mm:ss'"></td>
 
-        <td ng-if="transaction.in" ng-bind="::transaction.in | currency"></td>
-        <td ng-if="!transaction.in">-</td>
+        <td class="text-right" ng-if="transaction.in" ng-bind="::transaction.in | currency"></td>
+        <td class="text-right" ng-if="!transaction.in">-</td>
 
-        <td ng-if="transaction.out" ng-bind="::transaction.out | currency"></td>
-        <td ng-if="!transaction.out">-</td>
+        <td class="text-right" ng-if="transaction.out" ng-bind="::transaction.out | currency"></td>
+        <td class="text-right" ng-if="!transaction.out">-</td>
 
-        <td ng-bind="::transaction.runningTotal | currency"></td>
+        <td class="text-right" ng-bind="::transaction.runningTotal | currency"></td>
       </tr>
 
       <tr>
