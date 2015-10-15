@@ -10,8 +10,8 @@
                ng-currency="true" min="0">
       </div>
     </div>
-    <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction">Put In</button>
-    <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction">Take Out</button>
+    <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction" ng-click="addMoney(newTransaction)">Put In</button>
+    <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction" ng-click="removeMoney(newTransaction)">Take Out</button>
   </form>
 
 </div>
@@ -39,10 +39,15 @@
     <tbody>
       <tr ng-repeat="transaction in transactions">
         <td ng-bind="::transaction.id"></td>
-        <td ng-bind="::transaction.time"></td>
-        <td ng-bind="::transaction.in"></td>
-        <td ng-bind="::transaction.out"></td>
-        <td ng-bind="::transaction.runningTotal"></td>
+        <td ng-bind="::transaction.date | date:'yyyy-MM-dd HH:mm:ss'"></td>
+
+        <td ng-if="transaction.in" ng-bind="::transaction.in | currency"></td>
+        <td ng-if="!transaction.in">-</td>
+
+        <td ng-if="transaction.out" ng-bind="::transaction.out | currency"></td>
+        <td ng-if="!transaction.out">-</td>
+
+        <td ng-bind="::transaction.runningTotal | currency"></td>
       </tr>
 
       <tr>
