@@ -15,7 +15,8 @@
     };
 
 
-    function getWallet () {
+    function getWallet ()
+    {
 
       var wallet;
 
@@ -45,7 +46,8 @@
 
     }
 
-    function saveWallet (wallet) {
+    function saveWallet (wallet)
+    {
 
       try
       {
@@ -66,7 +68,8 @@
     }
 
 
-    function addTransaction (amount) {
+    function addTransaction (amount)
+    {
 
       return getWallet().then(function (wallet) {
 
@@ -96,12 +99,14 @@
     }
 
 
-    function addMoney (amount) {
+    function addMoney (amount)
+    {
       return addTransaction(amount);
     }
 
 
-    function removeMoney (amount) {
+    function removeMoney (amount)
+    {
       return addTransaction(-amount);
     }
 

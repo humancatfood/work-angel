@@ -28,7 +28,8 @@
     }
 
 
-    function addMoney (amount) {
+    function addMoney (amount)
+    {
       $scope.loading = true;
       TransactionsService.addMoney(amount)
         .then(update, handleError)
@@ -38,7 +39,8 @@
     }
 
 
-    function removeMoney (amount) {
+    function removeMoney (amount)
+    {
       $scope.loading = true;
       TransactionsService.removeMoney(amount)
         .then(update, handleError)
@@ -47,12 +49,16 @@
         });
     }
 
-    function update (wallet) {
+
+    function update (wallet)
+    {
       $scope.transactions = wallet.transactions;
       $scope.total = wallet.total;
     }
 
-    function handleError (error) {
+
+    function handleError (error)
+    {
       $log.error(error);
     }
 
