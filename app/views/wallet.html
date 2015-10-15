@@ -40,7 +40,7 @@
     </tfoot>
 
     <tbody>
-      <tr ng-repeat="transaction in transactions">
+      <tr ng-repeat="transaction in transactions.slice().reverse()">
         <td class="text-center" ng-bind="::transaction.id"></td>
         <td class="text-left" ng-bind="::transaction.date | date:'yyyy-MM-dd HH:mm:ss'"></td>
 
