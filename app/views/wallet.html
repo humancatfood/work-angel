@@ -1,3 +1,54 @@
 <div class="jumbotron">
 
+  <h1>My Wallet</h1>
+
+  <form class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon">$</div>
+        <input type="number" class="form-control" step="0.01" min="0.00" model="newTransactionValue" placeholder="Amount">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-disabled="!newTransactionValue">Put In</button>
+    <button type="submit" class="btn btn-primary" ng-disabled="!newTransactionValue">Take Out</button>
+  </form>
+
+</div>
+
+<div class="transactions">
+  <h4>Transactions:</h4>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Time</th>
+        <th>In</th>
+        <th>Out</th>
+        <th class="text-right">Running Total</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td class="text-center" colspan="4">Total:</td>
+        <td ng-bind="total"></td>
+      </tr>
+    </tfoot>
+
+    <tbody>
+      <tr ng-repeat="transaction in transactions">
+        <td ng-bind="::transaction.id"></td>
+        <td ng-bind="::transaction.time"></td>
+        <td ng-bind="::transaction.in"></td>
+        <td ng-bind="::transaction.out"></td>
+        <td ng-bind="::transaction.runningTotal"></td>
+      </tr>
+
+      <tr>
+        <td colspan="5" ng-if="!transactions">---</td>
+      </tr>
+
+    </tbody>
+  </table>
+
 </div>
