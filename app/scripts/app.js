@@ -1,33 +1,24 @@
-'use strict';
+(function (angular) {
 
-/**
- * @ngdoc overview
- * @name workAngelApp
- * @description
- * # workAngelApp
- *
- * Main module of the application.
- */
-angular
-  .module('workAngelApp', [
+  'use strict';
+
+  var app = angular.module('app', [
     'ngAnimate',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+    'ngSanitize'
+  ]);
+
+  app.config(function ($routeProvider) {
+
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        templateUrl: 'views/wallet.html',
+        controller: 'WalletCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
+
   });
+
+}(window.angular));
