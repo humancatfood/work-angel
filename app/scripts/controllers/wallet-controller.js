@@ -18,6 +18,7 @@
 
       $scope.newTransaction = 0;
       $scope.loading = true;
+      $scope.error = null;
 
       TransactionsService.getWallet()
         .then(update, handleError)
@@ -32,6 +33,7 @@
     function addMoney (amount)
     {
       $scope.loading = true;
+      $scope.error = null;
       TransactionsService.addMoney(amount)
         .then(update, handleError)
         .finally(function () {
@@ -44,6 +46,7 @@
     function removeMoney (amount)
     {
       $scope.loading = true;
+      $scope.error = null;
       TransactionsService.removeMoney(amount)
         .then(update, handleError)
         .finally(function () {
@@ -63,6 +66,7 @@
     function handleError (error)
     {
       $log.error(error);
+      $scope.error = error;
     }
 
 

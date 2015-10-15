@@ -12,6 +12,9 @@
     </div>
     <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction" ng-click="addMoney(newTransaction)">Put In</button>
     <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction" ng-click="removeMoney(newTransaction)">Take Out</button>
+
+    <div ng-if="error" class="alert alert-danger" role="alert" ng-bind="error"></div>
+
   </form>
 
 </div>
