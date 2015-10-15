@@ -105,7 +105,11 @@
       return addTransaction(-amount);
     }
 
-    //$rootScope.$on('RESET', init);
+
+    $rootScope.$on('RESET', function () {
+      $window.localStorage.removeItem(storageKey);
+    });
+
 
     return service;
 

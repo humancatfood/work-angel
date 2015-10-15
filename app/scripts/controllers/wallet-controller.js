@@ -4,7 +4,7 @@
 
   var app = angular.module('app');
 
-  app.controller('WalletCtrl', function ($scope, $timeout, $log, TransactionsService) {
+  app.controller('WalletCtrl', function ($scope, $rootScope, $timeout, $log, TransactionsService) {
 
     $scope.addMoney = addMoney;
     $scope.removeMoney = removeMoney;
@@ -55,6 +55,11 @@
     function handleError (error) {
       $log.error(error);
     }
+
+
+    $rootScope.$on('RESET', function () {
+      $timeout(init, 0);
+    });
 
   });
 
