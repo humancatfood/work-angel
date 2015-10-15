@@ -4,7 +4,7 @@
 
   var app = angular.module('app');
 
-  app.controller('WalletCtrl', function ($scope, TransactionsService) {
+  app.controller('WalletCtrl', function ($scope, $timeout, $log, TransactionsService) {
 
     $scope.addMoney = addMoney;
     $scope.removeMoney = removeMoney;
@@ -15,19 +15,45 @@
 
     function init ()
     {
+
       $scope.newTransaction = 0;
-      $scope.transactions = TransactionsService.getTransactions();
-      $scope.total = TransactionsService.getTotal();
+      $scope.loading = true;
+
+      TransactionsService.getWallet()
+        .then(update, handleError)
+        .finally(function () {
+          $scope.loading = false;
+        });
+
     }
 
 
     function addMoney (amount) {
-      $scope.total = TransactionsService.addMoney(amount);
+      $scope.loading = true;
+      TransactionsService.addMoney(amount)
+        .then(update, handleError)
+        .finally(function () {
+          $scope.loading = false;
+        });
     }
 
 
     function removeMoney (amount) {
-      $scope.total = TransactionsService.removeMoney(amount);
+      $scope.loading = true;
+      TransactionsService.removeMoney(amount)
+        .then(update, handleError)
+        .finally(function () {
+          $scope.loading = false;
+        });
+    }
+
+    function update (wallet) {
+      $scope.transactions = wallet.transactions;
+      $scope.total = wallet.total;
+    }
+
+    function handleError (error) {
+      $log.error(error);
     }
 
   });

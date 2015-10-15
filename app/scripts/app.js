@@ -23,9 +23,4 @@
 
   });
 
-
-  app.run(function (TransactionsService) {
-    TransactionsService.init();
-  });
-
 }(window.angular));

@@ -4,54 +4,95 @@
 
   var app = angular.module('app');
 
-  app.factory('TransactionsService', function ($rootScope) {
+  app.factory('TransactionsService', function ($rootScope, $window, $q, $log) {
 
-    var transactions;
-    var total;
-    var runningId;
+    var storageKey = 'WALLET';
 
     var service = {
-      getTransactions: getTransactions,
-      getTotal: getTotal,
+      getWallet: getWallet,
       addMoney: addMoney,
-      removeMoney: removeMoney,
-      init: init
+      removeMoney: removeMoney
     };
 
 
-    function init () {
-      transactions = [];
-      total = 0;
-      runningId = 0;
+    function getWallet () {
+
+      var wallet;
+
+      try
+      {
+        var jsonWallet = $window.localStorage.getItem(storageKey);
+        wallet = JSON.parse(jsonWallet);
+      }
+      catch (error)
+      {
+        $log.error(error);
+        wallet = null;
+      }
+
+      if (!wallet ||
+          !angular.isObject(wallet) ||
+          !angular.isArray(wallet.transactions) ||
+          !angular.isNumber(wallet.total))
+      {
+        wallet = {
+          transactions: [],
+          total: 0
+        };
+      }
+
+      return $q.when(wallet);
+
     }
 
+    function saveWallet (wallet) {
 
-    function getTransactions () {
+      try
+      {
+        var jsonWallet = JSON.stringify(wallet);
+        $window.localStorage.setItem(storageKey, jsonWallet);
+      }
+      catch (error)
+      {
+        $log.error(error);
+        wallet = {
+          transactions: [],
+          total: 0
+        };
+      }
 
-      return transactions;
+      return $q.when(wallet);
 
-    }
-
-
-    function getTotal () {
-      return total;
     }
 
 
     function addTransaction (amount) {
 
-      total += amount;
-      runningId += 1;
+      return getWallet().then(function (wallet) {
 
-      transactions.push({
-        id: runningId,
-        date: (+new Date()),
-        in: Math.max(amount, 0),
-        out: Math.min(amount, 0),
-        runningTotal: total
+        if (amount < -wallet.total)
+        {
+          return $q.reject('Insufficient funds');
+        }
+
+        wallet.total += amount;
+
+        wallet.transactions.push({
+          id: wallet.transactions.length + 1,
+          date: (+new Date()),
+          in: Math.max(amount, 0),
+          out: Math.min(amount, 0),
+          runningTotal: wallet.total
+        });
+
+        return saveWallet(wallet).then(function (wallet) {
+          return wallet;
+        }, function (error) {
+          return $q.reject('could not store wallet: ' + error);
+        });
+
       });
 
-      return total;
     }
 
 
@@ -64,7 +105,7 @@
       return addTransaction(-amount);
     }
 
-    $rootScope.$on('RESET', init);
+    //$rootScope.$on('RESET', init);
 
     return service;
 
