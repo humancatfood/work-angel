@@ -5,7 +5,8 @@
   var app = angular.module('app', [
     'ngAnimate',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'ng-currency'
   ]);
 
 

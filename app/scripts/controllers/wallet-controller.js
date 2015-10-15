@@ -10,7 +10,7 @@
 
     function init ()
     {
-      $scope.newTransactionValue = 0.00;
+      $scope.newTransaction = 0;;
       $scope.transactions = TransactionsService.getTransactions();
     }
 

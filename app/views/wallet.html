@@ -6,11 +6,12 @@
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon">$</div>
-        <input type="number" class="form-control" step="0.01" min="0.00" model="newTransactionValue" placeholder="Amount">
+        <input type="text" class="form-control" ng-model="newTransaction"
+               ng-currency="true" min="0">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" ng-disabled="!newTransactionValue">Put In</button>
-    <button type="submit" class="btn btn-primary" ng-disabled="!newTransactionValue">Take Out</button>
+    <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction">Put In</button>
+    <button type="button" class="btn btn-sm btn-primary" ng-disabled="!newTransaction">Take Out</button>
   </form>
 
 </div>
@@ -45,7 +46,7 @@
       </tr>
 
       <tr>
-        <td colspan="5" ng-if="!transactions">---</td>
+        <td colspan="5" ng-if="!transactions.length">---</td>
       </tr>
 
     </tbody>
