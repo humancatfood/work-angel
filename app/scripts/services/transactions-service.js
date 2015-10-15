@@ -1,10 +1,10 @@
-(function (angular) {
+(function (angular, $) {
 
   'use strict';
 
   var app = angular.module('app');
 
-  app.factory('TransactionsService', function ($rootScope, $window, $q, $log) {
+  app.factory('TransactionsService', function ($rootScope, $window, $q, $log, $timeout) {
 
     var storageKey = 'WALLET';
 
@@ -70,6 +70,13 @@
 
     function addTransaction (amount)
     {
+      if ( amount === 666 || amount === -666)
+      {
+        $('#easter-egg-modal').modal('show');
+        $timeout(function () {
+          $('#easter-egg-modal').modal('hide');
+        }, 1000);
+      }
 
       return getWallet().then(function (wallet) {
 
@@ -120,4 +127,4 @@
 
   });
 
-}(window.angular));
+}(window.angular, window.jQuery));
