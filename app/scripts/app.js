@@ -8,6 +8,7 @@
     'ngSanitize'
   ]);
 
+
   app.config(function ($routeProvider) {
 
     $routeProvider
@@ -19,6 +20,11 @@
         redirectTo: '/'
       });
 
+  });
+
+
+  app.run(function (TransactionsService) {
+    TransactionsService.init();
   });
 
 }(window.angular));
