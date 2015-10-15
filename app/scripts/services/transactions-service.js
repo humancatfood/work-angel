@@ -12,6 +12,7 @@
 
     var service = {
       getTransactions: getTransactions,
+      getTotal: getTotal,
       addMoney: addMoney,
       removeMoney: removeMoney,
       init: init
@@ -32,6 +33,11 @@
     }
 
 
+    function getTotal () {
+      return total;
+    }
+
+
     function addTransaction (amount) {
 
       total += amount;
@@ -45,16 +51,17 @@
         runningTotal: total
       });
 
+      return total;
     }
 
 
     function addMoney (amount) {
-      addTransaction(amount);
+      return addTransaction(amount);
     }
 
 
     function removeMoney (amount) {
-      addTransaction(-amount);
+      return addTransaction(-amount);
     }
 
     $rootScope.$on('RESET', init);
