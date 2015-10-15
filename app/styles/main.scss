@@ -21,8 +21,13 @@ $base-spacing: 10px;
   padding: 0.2em 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   padding: 0;
+  position: relative;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -46,6 +51,10 @@ body {
   }
 }
 
+.main {
+  padding-bottom: $footer-height;
+}
+
 /* Custom page footer */
 .footer {
   position: absolute;
@@ -66,7 +75,15 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  border: 1px solid #e5e5e5;
+
+  padding-left: 100px;
+  padding-right: 100px;
+
+  .alert {
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
 }
 
 /* Responsive: Portrait tablets and up */
