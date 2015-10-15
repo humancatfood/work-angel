@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, $) {
 
   'use strict';
 
@@ -23,6 +23,7 @@
         .then(update, handleError)
         .finally(function () {
           $scope.loading = false;
+          clear();
         });
 
     }
@@ -35,6 +36,7 @@
         .then(update, handleError)
         .finally(function () {
           $scope.loading = false;
+          clear();
         });
     }
 
@@ -46,6 +48,7 @@
         .then(update, handleError)
         .finally(function () {
           $scope.loading = false;
+          clear();
         });
     }
 
@@ -63,10 +66,19 @@
     }
 
 
+    function clear ()
+    {
+      $timeout(function () {
+        $scope.newTransaction = 0;
+        $('#wallet-input').focus();
+      }, 100);
+    }
+
+
     $rootScope.$on('RESET', function () {
       $timeout(init, 0);
     });
 
   });
 
-}(window.angular));
+}(window.angular, window.jQuery));
