@@ -7,4 +7,4 @@ version 0.12.1.
 
 Run `grunt` for building and `grunt serve` for preview.
 
-Or just look at it [here](http://humancatfood.github.io/work-angel/)
+(Or just look at it [here](http://humancatfood.github.io/work-angel/))
